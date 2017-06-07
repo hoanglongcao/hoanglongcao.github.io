@@ -1,0 +1,174 @@
+/* CAO HOANG LONG */
+
+@font-face {
+  font-family: 'Lucida Sans';
+  src:  url('lucida-sans.ttf') format('truetype');
+}
+
+body
+{
+	background-color:#F5F5F5; /* while smoke color */
+	color:#000000;
+	font-family:Lucida Sans;
+	font-size:12px;
+	line-height:20px;
+	text-align:justify;
+}
+
+h1
+{
+	color:#000000;
+	font-family:Lucida Sans;
+	font-size:15px;
+	letter-spacing:1px;
+	text-align:justify;
+	font-weight:525;
+}
+
+pc
+{
+	color:#999999;
+	font-family:Lucida Sans;
+	font-size:11px;
+}
+
+a{outline:none;}
+a img{outline:none;}
+img{border:0;}
+a:link{		text-decoration:none; 		color:#001199;}
+a:visited{	text-decoration:none; 		color:#001199;}
+a:hover{	text-decoration:underline; 	color:#001199;}
+a:active{	text-decoration:underline; 	color:#001199;}
+
+#main
+{
+	min-width:800px;
+	width:960px;
+	margin:0 auto;
+}
+
+#bannercontainer
+{
+	position: relative;
+	width:100%;
+	height:120px;
+	min-width:800px;
+}
+
+#leftbanner
+{
+	height:120px;
+	float:left;
+	margin-left:10px;
+	min-width:570px;
+	background:transparent url(img/banner.png) no-repeat top left;
+}
+
+#rightbanner
+{
+	float:right;
+	height:120px;
+	min-width:153px;
+}
+
+#cssmenu ul
+{
+	clear:both;
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	width:auto;
+	min-width:580px;
+	position:relative;
+	display:block;
+	height:50px;
+	font-size:18px;
+	font-weight:bold;
+	font-family:helvetica, sans-serif;
+	border-bottom:5px solid #0066FF; /* #0066FF blue #007700 green */
+	border-top:2px solid #0066FF;
+}
+
+#cssmenu li
+{
+
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	font-size: 20px;
+	font-family:Lucida Sans;
+}
+	
+#cssmenu li a
+{
+	display:block;
+	float:left;
+	color:#000000;
+	text-decoration:none;
+	font-weight:bold;
+	padding:15px 20px 0 10px;
+}
+	
+#cssmenu li a:hover
+{	
+	color:#00AA00; /* #0066CC light blue #00AA00 light green */
+	height:25px;
+}
+	
+#cssmenu li.active a
+{
+	display:inline;
+	height:25px;
+	float:left;
+	margin:0;
+}
+
+#maintext
+{
+	padding:15px 0 30px 0;
+	margin-left:15px;
+	width:60%;
+	float:left;
+}
+
+#tweeter
+{
+	padding:15px 0 30px 0;
+	margin-left:15px;
+	width:60%;
+	float:left;
+	text-align:right;
+}
+
+#fullwidthtext
+{
+	padding:15px 0 30px 0;
+	margin-left:15px;
+	width:100%;
+	float:left;
+}
+
+#rightcol
+{
+	color:#000000;
+	font-family:Lucida Sans;
+	font-size:12px;
+	letter-spacing:1px;
+	padding-top:15px;
+	padding-left:10%;
+	width:25%;
+	float:right;
+	text-align:left;
+}
+
+#footer
+{
+	color:#999999;
+	font-family:Lucida Sans;
+	font-size:11px;
+	padding-top:4px;
+	clear:both;
+	padding-left:5px;
+}
+

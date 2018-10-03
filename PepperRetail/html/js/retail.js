@@ -4,7 +4,7 @@ var correctAns = 0;
 var COUPONnumber = 1;
 var startTime = "";
 
-var session = new QiSession();
+var session = new QiSession("192.168.2.6");
 
 var mem;
 session.service("ALMemory").done(function (m) {

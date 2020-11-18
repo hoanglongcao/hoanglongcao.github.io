@@ -1,5 +1,5 @@
 /* Space out content a bit */
-body { padding-top: 20px; }
+body { padding-top: 20px; word-wrap: break-word; }
 
 .header { border-bottom: 1px solid #EEE; padding-bottom: 10px; margin-bottom: 20px; text-align: center; }
 

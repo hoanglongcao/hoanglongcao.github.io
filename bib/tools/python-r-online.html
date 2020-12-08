@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>DataCamp Light | Standalone example</title>
+  <link rel='shortcut icon' type='image/x-icon' href='https://www.datacamp.com/assets/favicon.ico'/>
+  <style>
+    .exercise {
+      margin: 50px;
+    }
+  </style>
+
+  <script async src="https://cdn.datacamp.com/dcl-react.js.gz"></script>
+<script async src='/cdn-cgi/bm/cv/2172558837/api.js'></script></head>
+<body>
+  <div class="exercise">
+    <div class="title">
+      <h2>Python - Twitter API</h2>
+    </div>
+
+    <div data-datacamp-exercise data-lang="python" data-height="auto">
+      <code data-type="pre-exercise-code"></code>
+      <code data-type="sample-code">
+        import tweepy
+        from tweepy import OAuthHandler
+        import pandas as pd
+
+        """I like to have my python script print a message at the beginning. This helps me confirm whether everything is set up correctly. And it's nice to get an uplifting message ;)."""
+
+        print("You got this!")
+
+        # You have to register with Twitter https://developer.twitter.com/en/apply-for-access
+
+        consumer_key = "xxx"
+        consumer_secret = "xxx"
+        access_token = "xxx"
+        access_token_secret = "xxx"
+
+        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+        auth.set_access_token(access_token, access_token_secret)
+
+        api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+
+        tweets = []
+
+        count = 1
+
+        """Twitter will automatically sample the last 7 days of data. Depending on how many total tweets there are with the specific hashtag, keyword, handle, or key phrase that you are looking for, you can set the date back further by adding since= as one of the parameters. You can also manually add in the number of tweets you want to get back in the items() section."""
+
+        # You can change blablacar to your keyword, also other parameters
+
+
+        for tweet in tweepy.Cursor(api.search, q="blablacar", count=450, since='2020-12-01').items(50):
+          
+          print(count)
+          count += 1
+
+          try: 
+            print(tweet.text)
+
+          except tweepy.TweepError as e:
+            print(e.reason)
+            continue
+
+          except StopIteration:
+            break
+
+      </code>
+      <code data-type="solution"></code>
+      <code data-type="sct"></code>
+      <div data-type="hint">Just press 'Run'.</div>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="title">
+      <h2>R - Twitter Good morning Map</h2>
+    </div>
+    <div data-datacamp-exercise data-lang="r" data-height="500">
+      <code data-type="pre-exercise-code"># no pec</code>
+      <code data-type="sample-code">
+        # This R environment comes with all of CRAN preinstalled, as well as many other helpful packages
+        # The environment is defined by the kaggle/rstats docker image: https://github.com/kaggle/docker-rstats
+        # For example, here's several helpful packages to load in 
+
+        library(ggplot2) # Data visualization
+        library(readr) # CSV file I/O, e.g. the read_csv function
+
+        # Input data files are available in the "../input/" directory.
+        # For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
+
+        #system("ls ../input")
+
+        # Any results you write to the current directory are saved as output.
+
+        tweets.all = read.csv("https://hoanglongcao.github.io/bib/tweets_all.csv", stringsAsFactors = F)
+
+        library(lubridate)
+        library(ggplot2)
+        library(dplyr)
+        library(maptools)
+        library(animation) 
+
+        tweets.all$Date = sapply(strsplit(tweets.all$created_at, " "), "[[", 3)
+        tweets.all$Date = paste(tweets.all$Date,"-12-16", sep = "")
+        tweets.all$Time = sapply(strsplit(tweets.all$created_at, " "), "[[", 4)
+        tweets.all$DateTime = paste(tweets.all$Date, tweets.all$Time)
+        tweets.all$DateTime = as.POSIXct(tweets.all$DateTime, format = "%d-%m-%y %H:%M:%S")
+        tweets.all$Time = as.POSIXct(tweets.all$Time, format = "%H:%M:%S")
+
+        tweets.all.arranged = arrange(tweets.all, DateTime)
+
+        tweets.all.arranged$Hour = hour(tweets.all.arranged$Time)
+        tweets.all.arranged$Minute = minute(tweets.all.arranged$Time)
+
+
+        #Create some time bins
+
+        l = length(tweets.all.arranged$text)
+        n = floor(l / 100)
+
+        tweets.all.arranged$Time_bin = 100
+
+        k = seq(0,l,n)
+
+        i=1
+
+        while (i&#x3c;length(k)) {
+          
+          tweets.all.arranged$Time_bin[(k[i]:k[i+1])] = i
+          i=i+1
+          
+        }
+
+
+        #Code below helped by https://www.r-bloggers.com/r-beginners-plotting-locations-on-to-a-world-map/
+
+        map = NULL
+        mapWorld = borders("world", colour="black", fill="gray")
+        map = ggplot() +   mapWorld
+
+        map = map + geom_point(aes(x=tweets.all.arranged$place_lon, y=tweets.all.arranged$place_lat, 
+                                    color=as.factor(tweets.all.arranged$Time_bin)) , size=2) + 
+          theme(legend.position="none")
+        map
+      </code>
+
+      <div data-type="hint">
+        <p>Just press 'Run'.</p>
+      </div>
+    </div>
+  </div>

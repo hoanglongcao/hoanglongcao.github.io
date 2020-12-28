@@ -12,11 +12,11 @@ body { padding-top: 20px; word-wrap: break-word; }
 a > .fa { display: inline; }
 
 /* /\* Customize container *\/ */
-@media (min-width: 768px) { 
-     .container { 
-         max-width: 730px; 
-     } 
- } 
+/* @media (min-width: 768px) { */
+/*     .container { */
+/*         max-width: 730px; */
+/*     } */
+/* } */
 /* Jumbotron */
 .jumbotron { text-align: justify; padding-top: 1.5em; padding-bottom: 0.5em; font-size: 100%; }
 

@@ -16,6 +16,11 @@
         <!-- Hoang-Long Cao, Cao Hoàng Long, human-robot interaction, social robot, tương tác người-robot, robot xã hội, robot tương tác xã hội -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
         <link rel="stylesheet"
               href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
               integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
@@ -23,6 +28,7 @@
         <link rel="stylesheet"
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/group.css">
+       
         <link rel="icon" href="/img/robot-icon.png">
     </head>
 
@@ -94,35 +100,68 @@
 
             <div class="jumbotron">
     <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-                <p>
-        I was born in Vietnam and have spent my academic life in some countries. From Septempber 2013, I have been working at the <a href="http://mech.vub.ac.be/multibody_mechanics.htm" target ='_blank'>Robotics and Multibody Mechanics research group</a>, <a href="http://www.vub.ac.be" target ='_blank'>Vrije Universiteit Brussel</a>, Belgium. At the mean time, I retain my position at <a href="http://www.ctu.edu.vn" target ='_blank'>Can Tho University</a> as a lecturer.
-        </p>
+        <div class="row">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-content1" role="tab" aria-controls="nav-content1" aria-selected="true">English</a>
+                    <a class="nav-item nav-link" id="nav-content2-tab" data-toggle="tab" href="#nav-content2" role="tab" aria-controls="nav-content2" aria-selected="false">Tiếng Việt</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-content1" role="tabpanel" aria-labelledby="nav-content1-tab">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>
+                                I was born in Vietnam and have spent my academic life in some countries. From Septempber 2013, I have been working at the <a href="http://mech.vub.ac.be/multibody_mechanics.htm" target ='_blank'>Robotics and Multibody Mechanics research group</a>, <a href="http://www.vub.ac.be" target ='_blank'>Vrije Universiteit Brussel</a>, Belgium. At the mean time, I retain my position at <a href="http://www.ctu.edu.vn" target ='_blank'>Can Tho University</a> as a lecturer.
+                            </p>
 
-        <p> 
-            My research topics are social robotics, human-robot interaction, and human-robot collaboration. See my <a href="/research.html">research projects</a> and <a href="http://www.brubotics.eu/" target ='_blank'>Brubotics</a> for more information.
-        </p>
+                            <p> 
+                                My research topics are social robotics, human-robot interaction, and human-robot collaboration. See my <a href="/research.html">research projects</a> and <a href="http://www.brubotics.eu/" target ='_blank'>Brubotics</a> for more information.
+                            </p>
 
-        <p>Contact info: hoang.long.cao@vub.be</p>
+                            <p>Contact info: hoang.long.cao@vub.be</p>
 
-    
+
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <img src="/img/people/long.jpg" class="figure-img img-fluid rounded-circle">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-content2" role="tabpanel" aria-labelledby="nav-content2-tab">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>
+                                Tôi công tác tại nhóm nghiên cứu <a href="http://mech.vub.ac.be/multibody_mechanics.htm" target ='_blank'>Robotics and Multibody Mechanics</a> thuộc <a href="http://www.vub.ac.be" target ='_blank'> Đại học Vrije Universiteit Brussel</a> (Bỉ) từ năm 2013 và <a href="http://www.ctu.edu.vn" target ='_blank'>Đại học Cần Thơ</a> từ năm 2010.
+                            </p>
+
+                            <p> 
+                                Hướng nghiên cứu chính là robot tương tác xã hội, tương tác/hợp tác giữa người và robot. Xem mục <a href="/research.html">Các dự án nghiên cứu</a> và <a href="http://www.brubotics.eu/" target ='_blank'>Brubotics</a> để có thêm thông tin chi tiết.
+                            </p>
+
+                            <p>Thông tin liên hệ: hoang.long.cao@vub.be</p>
+
+
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <img src="/img/people/long.jpg" class="figure-img img-fluid rounded-circle">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="col-md-4 text-center">
-            <img src="/img/people/long.jpg" class="figure-img img-fluid rounded-circle">
-         </div>
-      </div>
 
-       
 
     </div>
+    <!-- /container -->
 </div>
 
 <section>
     <h2>News</h2>
     <ul class="news list-unstyled">
         
-            
+        
 
 
 
@@ -171,7 +210,7 @@
 </li>
 
         
-            
+        
 
 
 
@@ -220,7 +259,7 @@
 </li>
 
         
-            
+        
 
 
 
@@ -274,10 +313,10 @@
     </ul>
     
     
-        <p>
-            <span class="fa fa-fw fa-history"></span>
-            <a href="/blog.html">Older posts&hellip;</a>
-        </p>
+    <p>
+        <span class="fa fa-fw fa-history"></span>
+        <a href="/blog.html">Older posts&hellip;</a>
+    </p>
     
 </section>
 
@@ -288,14 +327,14 @@
         
         
         
-            
         
-            
         
-            
         
-            
-                
+        
+        
+        
+        
+        
 
 
 
@@ -332,10 +371,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -372,10 +411,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -410,12 +449,12 @@
     
 </div>
 
-            
         
-            
         
-            
-                
+        
+        
+        
+        
 
 
 
@@ -452,10 +491,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -492,25 +531,25 @@
     
 </div>
 
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     </div>
 
@@ -520,20 +559,20 @@
         
         
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
-                
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 
@@ -574,14 +613,14 @@
     
 </div>
 
-            
         
-            
         
-            
         
-            
-                
+        
+        
+        
+        
+        
 
 
 
@@ -622,10 +661,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -666,10 +705,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -710,10 +749,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -754,10 +793,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -798,10 +837,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -842,10 +881,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -886,10 +925,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -930,10 +969,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -974,7 +1013,7 @@
     
 </div>
 
-            
+        
         
     </div>
 
@@ -984,8 +1023,8 @@
         
         
         
-            
-                
+        
+        
 
 
 
@@ -1022,10 +1061,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -1062,10 +1101,10 @@
     
 </div>
 
-            
         
-            
-                
+        
+        
+        
 
 
 
@@ -1102,37 +1141,37 @@
     
 </div>
 
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     </div>
 

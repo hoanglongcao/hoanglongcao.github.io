@@ -16,3 +16,9 @@ writing-what-is-your-favorite-robot-company
 speaking-should-robots-be-different-in-your-country
 listening-robotics-in-germany
 my-glossary-2
+robotcontrol
+reading-how-is-a-robot-controlled
+writing-manually-control-a-robot
+speaking-how-can-an-autonomous-car-navigate
+listening-tug-autonomous-mobile-robot-in-hospitals
+my-glossary-3

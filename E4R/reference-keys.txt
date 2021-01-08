@@ -22,3 +22,9 @@ writing-manually-control-a-robot
 speaking-how-can-an-autonomous-car-navigate
 listening-tug-autonomous-mobile-robot-in-hospitals
 my-glossary-3
+sensors
+reading-types-of-robot-sensors
+writing-manually-control-a-robot-1
+speaking-making-decisions-with-sensor-inputs
+listening-researchers-develop-robot-skin-sensor
+my-glossary-4

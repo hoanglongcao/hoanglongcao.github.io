@@ -24,7 +24,7 @@ listening-tug-autonomous-mobile-robot-in-hospitals
 my-glossary-3
 sensors
 reading-types-of-robot-sensors
-writing-manually-control-a-robot-1
+writing-force-sensitive-resistor
 speaking-making-decisions-with-sensor-inputs
 listening-researchers-develop-robot-skin-sensor
 my-glossary-4
@@ -34,3 +34,9 @@ writing-festo-bioniccobot
 speaking-arduino-dc-motor-control
 listening-modular-desktop-collaborative-robotic-arm
 my-glossary-5
+materials
+reading-robot-materials
+writing-properties-of-materials
+speaking-what-is-this-robot-made-of
+listening-self-healing-robot
+my-glossary-6

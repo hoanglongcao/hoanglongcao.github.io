@@ -24,7 +24,7 @@
 <meta name="author" content="Hoang-Long Cao" />
 
 
-<meta name="date" content="2021-01-17" />
+<meta name="date" content="2021-02-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   <link rel="shortcut icon" href="images/bot.png" type="image/x-icon" />
 <link rel="prev" href="robotcontrol.html"/>
 <link rel="next" href="actuators.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -84,6 +84,9 @@
       $("#" + el_id).toggle();
     }
 </script>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="XI9dFmPA"></script>
 
 
 
@@ -204,6 +207,7 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
+
 <div id="sensors" class="section level1" number="5">
 <h1><span class="header-section-number">Unit 5</span> Sensors</h1>
 <center>
@@ -303,7 +307,7 @@ positioning sensor, contact sensors, light sensor, proximity sensor, voltage sen
 <p>Force range: 0 to 20 lb. (0 to 100 Newtons) applied evenly over the 0.125 sq in surface area</p>
 <p>Power supply: Any! Uses less than 1mA of current (depends on any pullup/down resistors used and supply voltage)</p>
 <footer>
-— “Force Sensitive Resistor (FSR).” <span class="citation">(<a href="references.html#ref-web:adafruitfsr" role="doc-biblioref">Adafruit 2012</a>)</span>
+*** “Force Sensitive Resistor (FSR).” <span class="citation">(<a href="references.html#ref-web:adafruitfsr" role="doc-biblioref">Adafruit 2012</a>)</span>
 </footer>
 </blockquote>
 <p>Check the <a href="https://learn.adafruit.com/force-sensitive-resistor-fsr">Adafruit website</a> for more information.</p>
@@ -394,6 +398,8 @@ proximity <input type="text">
 
 </div>
 </div>
+<div class="fb-comments" data-href="https://hoanglongcao.github.io/" data-width="" data-numposts="100"></div>
+
             </section>
 
           </div>
@@ -425,11 +431,7 @@ gitbook.start({
 "vk": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
+"fontsettings": false,
 "edit": {
 "link": null,
 "text": null
@@ -445,7 +447,8 @@ gitbook.start({
 "download": ["english-for-robotics-hoanglongcao.pdf"],
 "toc": {
 "collapse": "section"
-}
+},
+"info": false
 });
 });
 </script>

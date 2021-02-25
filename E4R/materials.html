@@ -24,7 +24,7 @@
 <meta name="author" content="Hoang-Long Cao" />
 
 
-<meta name="date" content="2021-01-17" />
+<meta name="date" content="2021-02-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   <link rel="shortcut icon" href="images/bot.png" type="image/x-icon" />
 <link rel="prev" href="actuators.html"/>
 <link rel="next" href="safety.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -84,6 +84,9 @@
       $("#" + el_id).toggle();
     }
 </script>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="XI9dFmPA"></script>
 
 
 
@@ -204,6 +207,7 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
+
 <div id="materials" class="section level1" number="7">
 <h1><span class="header-section-number">Unit 7</span> Materials</h1>
 <center>
@@ -279,7 +283,7 @@ soft robotics
 <blockquote>
 <p>Steel is the most common and least expensive metal, and also one of the strongest. Unhardened mild steel yields at 30,000-50,00 psi. For structural purposes, it can be hardened easily to 100,000 psi, and for tooling, can be strengthened to nearly 300,000 psi. It has a density of approximately 8 times the density of water (7.9 gm/cc), and a melting point around 1400 degrees C (pure iron 1530 C), which looks white hot.</p>
 <footer>
-— “Structural Materials for Robots.” <span class="citation">(<a href="references.html#ref-web:robotmaterials" role="doc-biblioref">Nelson 2020</a>)</span>
+*** “Structural Materials for Robots.” <span class="citation">(<a href="references.html#ref-web:robotmaterials" role="doc-biblioref">Nelson 2020</a>)</span>
 </footer>
 </blockquote>
 <textarea name="paragraph_text" rows="10">Write your paragraph here...</textarea>
@@ -367,6 +371,8 @@ self-healing <input type="text">
 
 </div>
 </div>
+<div class="fb-comments" data-href="https://hoanglongcao.github.io/" data-width="" data-numposts="100"></div>
+
             </section>
 
           </div>
@@ -398,11 +404,7 @@ gitbook.start({
 "vk": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
+"fontsettings": false,
 "edit": {
 "link": null,
 "text": null
@@ -418,7 +420,8 @@ gitbook.start({
 "download": ["english-for-robotics-hoanglongcao.pdf"],
 "toc": {
 "collapse": "section"
-}
+},
+"info": false
 });
 });
 </script>

@@ -15,9 +15,12 @@
 		</td>
 		<td class="publication">
 			<span class="pubtitle">
-				{%- set url = entry.fields['doi']%}
-				{%- if url %}	
-				<a href="https://doi.org/{{url|escape }}" target="_blank">{{ entry|title }} </a>
+				{%- set doi = entry.fields['doi']%}
+				{%- set url = entry.fields['url']%}
+				{%- if doi %}	
+				<a href="https://doi.org/{{doi|escape }}" target="_blank">{{ entry|title }} </a>
+				{%- elif url %}
+				<a href="{{url|escape }}" target="_blank">{{ entry|title }} </a>
 				{%- else %}
 				{{ entry|title }}
 				{%- endif %}

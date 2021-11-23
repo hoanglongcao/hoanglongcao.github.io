@@ -10,7 +10,7 @@ spdf_vietnam_rivers <- geojson_read("vietnam_rivers.geojson",  what = "sp")
 # List of Vietnamese Mekong Delta Province
 vmd_provinces <- c("An Giang", "Dong Thap", "Bac Lieu", "Can Tho", "Hau Giang",
                    "Ben Tre", "Tien Giang", "Long An", "Ca Mau", "Tra Vinh",
-                   "Kien Giang", "Vinh Long", "Soc Trang")
+                   "Kien Giang", "Vinh Long", "Soc Trang", "Phu Quoc (Kien Giang)")
 # Vietnamse Mekong Delta provinces
 spdf_vmd <-  spdf_vietnam[FALSE,]
 

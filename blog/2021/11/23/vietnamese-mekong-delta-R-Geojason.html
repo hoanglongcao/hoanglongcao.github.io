@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+         <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCCCJEJCGR"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-NCCCJEJCGR');
+        </script>
+        <title>hoanglongcao - Vẽ bản đồ Đồng bằng sông Cửu Long trong R với dữ liệu GeoJSON</title>
+        <!-- Hoang-Long Cao, Cao Hoàng Long, human-robot interaction, social robot, tương tác người-robot, robot xã hội, robot tương tác xã hội -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+              integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+              crossorigin="anonymous">
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/group.css">
+       
+        <link rel="icon" href="/img/robot-icon.png">
+
+        <meta property="fb:app_id" content="198413848681298"/>
+
+    </head>
+
+    <body>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="XI9dFmPA"></script>
+
+        <div class="container">
+            <!-- This is a bit nasty, but it basically says be a column first, and on larger screens be a spaced out row -->
+            <div class="header d-flex
+                        flex-column
+                        flex-md-row justify-content-md-between">
+                
+
+                <ul class="nav nav-pills justify-content-center">
+
+                    
+                    
+
+                        
+
+                        
+                        
+                        
+
+                        <li class="nav-item">
+                            <a class="nav-link "
+                               href="/">
+                                Home
+                            </a>
+                        </li>
+
+                    
+
+                        
+
+                        
+                        
+                        
+
+                        <li class="nav-item">
+                            <a class="nav-link "
+                               href="/publications.html">
+                                Publications
+                            </a>
+                        </li>
+
+                    
+
+                        
+
+                        
+                        
+                        
+
+                        <li class="nav-item">
+                            <a class="nav-link "
+                               href="/blog.html">
+                                Blog
+                            </a>
+                        </li>
+
+                    
+
+                </ul>
+
+            </div>
+
+
+
+            
+                <h1>Vẽ bản đồ Đồng bằng sông Cửu Long trong R với dữ liệu GeoJSON</h1>
+            
+
+            <p class="date">November 23, 2021</p>
+
+<div class="post">
+<p>Ghi chú cách vẽ bản đồ Đồng bằng sông Cửu Long trong R với dữ liệu GeoJSON.</p>
+
+<h3 id="dữ-liệu-geojson-cần-thiết">Dữ liệu GeoJSON cần thiết</h3>
+
+<ul>
+  <li>Dữ liệu các đơn vị hành chính cấp tỉnh của Việt Nam: <a href="/bib/mekong delta database/vietnam_provinces.geojson" target="_blank">vietnam_provinces.geojson</a>, <a href="https://data.opendevelopmentmekong.net/dataset/55bdad36-c476-4be9-a52d-aa839534200a/resource/b8f60493-7564-4707-aa72-a0172ba795d8/download/vn_iso_province.geojson" target="_blank">dữ liệu gốc opendevelopmentmekong</a></li>
+  <li>Dữ liệu các đơn vị hành chính cấp tỉnh của Campuchia: <a href="/bib/mekong delta database/cambodia_provinces.geojson" target="_blank">cambodia_provinces.geojson</a>, <a href="https://data.amerigeoss.org/dataset/cambodia-admin-boundaries-level-1-provinces/resource/b31050be-f237-42ac-88ed-32e1b668c175" target="_blank">dữ liệu gốc amerigeoss</a> (cần chuyển đuôi từ <em>.json</em> sang <em>.geojson</em>)</li>
+  <li>Dữ liệu sông ngòi ở Việt Nam: <a href="/bib/mekong delta database/vietnam_rivers.geojson" target="_blank">vietnam_rivers.geojson</a>, <a href="https://data.opendevelopmentmekong.net/dataset/8f73fdef-9b4b-4995-a07d-b92a4756c9b4/resource/3414118b-1396-4520-bee2-f060746036d4/download/thuyhe.geojson" target="_blank">dữ liệu gốc opendevelopmentmekong</a></li>
+</ul>
+
+<p>Xem thử dữ liệu GeoJSON bằng mapshaper: <a href="https://mapshaper.org/" target="_blank">mapshaper.org</a></p>
+
+<figure class="figure">
+  <img src="/img/map_shaper_mekong.png" class="figure-img img-fluid rounded" />
+  <figcaption class="figure-caption">Dữ liệu xem ở mapshaper: Việt Nam, Campuchia, hệ thống sông ngoài Việt Nam.</figcaption>
+</figure>
+
+<p><a href="https://mapshaper.org/" target="_blank">mapshaper</a> có thể xuất dữ liệu GeoJSON thành các định dạng khác. Ví dụ SVG:</p>
+<ul>
+  <li><a href="/bib/mekong delta database/vietnam_provinces.svg" target="_blank">vietnam_provinces.svg</a></li>
+  <li><a href="/bib/mekong delta database/cambodia_provinces.svg" target="_blank">cambodia_provinces.svg</a></li>
+  <li><a href="/bib/mekong delta database/vietnam_rivers.svg" target="_blank">vietnam_rivers.svg</a></li>
+</ul>
+
+<h3 id="vẽ-bản-đồ-đồng-bằng-sông-cửu-long">Vẽ bản đồ Đồng bằng sông Cửu Long</h3>
+
+<p>Bản đồ được vẽ bằng cách kết hợp 3 dữ liệu GeoJSON ở trên. Code R đầy đủ: <a href="/bib/mekong delta database/Vietnam-mekong-delta-map.R" target="_blank">Vietnam-mekong-delta-map.R</a></p>
+
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+<p>Dùng thư viện <code>geojsonio</code> để đọc dữ liệu GeoJSON: <code>spdf_cambodia</code>, <code>spdf_vietnam</code>, <code>spdf_vietnam_rivers</code></p>
+
+<pre class="prettyprint">
+# Load geojsonio library
+library(geojsonio)
+# Load geojson from files
+spdf_cambodia &lt;- geojson_read("cambodia_provinces.geojson",  what = "sp")
+spdf_vietnam &lt;- geojson_read("vietnam_provinces.geojson",  what = "sp")
+spdf_vietnam_rivers &lt;- geojson_read("vietnam_provinces.geojson",  what = "sp")
+</pre>
+
+<p>Tạo bản đồ 13 tỉnh đồng bằng sông Cửu Long từ bản đồ cấp tỉnh Việt Nam: <code>spdf_vmd</code></p>
+
+<pre class="prettyprint">
+# List of Vietnamese Mekong Delta Province
+vmd_provinces &lt;- c("An Giang", "Dong Thap", "Bac Lieu", "Can Tho", "Hau Giang",
+                   "Ben Tre", "Tien Giang", "Long An", "Ca Mau", "Tra Vinh",
+                   "Kien Giang", "Vinh Long", "Soc Trang")
+# Vietnamse Mekong Delta provinces
+spdf_vmd &lt;-  spdf_vietnam[FALSE,]
+
+for(i in 1:length(vmd_provinces)) {
+  spdf_vmd &lt;- rbind.SpatialPolygonsDataFrame(spdf_vmd, spdf_vietnam[spdf_vietnam$Name_EN==vmd_provinces[i],])
+}
+</pre>
+
+<p>Dùng thư viện <code>broom</code> để đọc dữ liệu ‘fortigy’ dữ liệu GeoJSON vừa đọc: <code>spdf_fortified_cambodia</code>, <code>spdf_fortified_vietnam</code>, <code>spdf_fortified_vmd</code>, <code>spdf_fortified_vietnam_rivers</code></p>
+
+<pre class="prettyprint">
+# Load broom library
+library(broom)
+# 'fortify' the data to get a dataframe format required by ggplot2
+spdf_fortified_cambodia &lt;- tidy(spdf_cambodia)
+spdf_fortified_vietnam &lt;- tidy(spdf_vietnam)
+spdf_fortified_vmd &lt;- tidy(spdf_vmd)
+spdf_fortified_vietnam_rivers &lt;- tidy(spdf_vietnam_rivers)
+</pre>
+
+<p>Dùng thư viện <code>ggplot2</code> để đọc vẽ bản đồ bằng cách kết hợp 4 dữ liệu đã được fortity ở trên. Crop bản đồ theo tọa độ <code>(103.9, 107.5)</code> và <code>(8.5, 11)</code>. Có thể sử dụng các hàm khác của <code>ggplot2</code> để thêm các nội dung khác (tên địa danh, ký hiệu, layers).</p>
+
+<pre class="prettyprint">
+# Load ggplot2 library
+library(ggplot2)
+#Plot
+ggplot() +
+  geom_polygon(data = spdf_fortified_cambodia, aes( x = long, y = lat, group = group), fill="#dfdedaff", color="#4484a5ff") +
+  geom_polygon(data = spdf_fortified_vietnam, aes( x = long, y = lat, group = group), fill="#adb09aff", color="#4484a5ff")+
+  geom_polygon(data = spdf_fortified_vmd, aes( x = long, y = lat, group = group), fill="#fefbe6ff", color="#4484a5ff")+
+  geom_path(data = spdf_fortified_vietnam_rivers, aes( x = long, y = lat, group = group), fill=NA, color="blue")+
+  coord_map(xlim = c(103.9, 107.5),ylim = c(8.5, 11))+
+  theme_void()+
+  theme(panel.background = element_rect(fill = "#c4e6efff")) # sea
+</pre>
+
+<h3 id="kết-quả">Kết quả</h3>
+
+<figure class="figure">
+  <img src="/img/vmd-r-geojson-ggplot2.png" class="figure-img img-fluid rounded" />
+  <figcaption class="figure-caption">Bản đồ đồng bằng sông Cửu Long vẽ trong R.</figcaption>
+</figure>
+
+
+</div>
+
+ <hr>
+    <h5>Read more posts</h5>
+    <ul class="news list-unstyled">
+        
+        	
+        <p><a href="/blog/2021/11/23/vietnamese-mekong-delta-R-Geojason.html"> Vẽ bản đồ Đồng bằng sông Cửu Long trong R với dữ liệu GeoJSON </a></p>
+        
+        	
+        <p><a href="/blog/2021/10/31/vietnamese-mekong-delta-visualization.html"> Vietnamese Mekong Delta - Data Visualization </a></p>
+        
+        	
+        <p><a href="/blog/2021/10/06/hci-swinburne-vietnam.html"> Guest lecture - Human-computer interaction </a></p>
+        
+        	
+        <p><a href="/blog/2021/07/21/rat-vietnam-cme.html"> Hội thảo: Rối loạn phổ tự kỷ ở trẻ và ứng dụng robot dạng người hỗ trợ can thiệp cho trẻ </a></p>
+        
+        	
+        <p><a href="/blog/2021/04/14/social-robots-covid-erf-2021.html"> Social robots and COVID-19, my talk at European Robotics Forum 2021 </a></p>
+        
+    </ul>
+    
+    
+    <p>
+        <span class="fa fa-fw fa-history"></span>
+        <a href="/blog.html">Other posts&hellip;</a>
+    </p>
+    
+
+
+            <div class="fb-comments" data-href="https://hoanglongcao.github.io/" data-width="" data-numposts="100"></div>
+
+
+            <div class="footer">
+   
+                <p>
+                    Hoang-Long Cao. Last updated: Oct 3 2021 
+                </p>
+                <a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7718520&style=0006&nbdigits=5&type=ip" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>                             
+            </div>
+
+        </div> <!-- /container -->
+
+        <!-- Support retina images. -->
+        <script type="text/javascript"
+                src="/js/srcset-polyfill.js"></script>
+    </body>
+</html>

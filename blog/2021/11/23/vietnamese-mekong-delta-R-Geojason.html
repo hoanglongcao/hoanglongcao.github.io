@@ -113,7 +113,6 @@
 
 <figure class="figure">
   <img src="/img/vmd-r-geojson-ggplot2.png" class="figure-img img-fluid rounded" />
-  <figcaption class="figure-caption">Bản đồ đồng bằng sông Cửu Long vẽ bằng R.</figcaption>
 </figure>
 
 <h3 id="dữ-liệu-geojson-cần-thiết">Dữ liệu GeoJSON cần thiết</h3>
@@ -182,7 +181,7 @@ spdf_fortified_vmd &lt;- tidy(spdf_vmd)
 spdf_fortified_vietnam_rivers &lt;- tidy(spdf_vietnam_rivers)
 </pre>
 
-<p>Dùng thư viện <code>ggplot2</code> để đọc vẽ bản đồ bằng cách kết hợp 4 dữ liệu đã được fortity ở trên. Crop bản đồ theo tọa độ <code>(103.9, 107.5)</code> và <code>(8.5, 11)</code>. Có thể sử dụng các hàm khác của <code>ggplot2</code> để thêm các nội dung khác (tên địa danh, ký hiệu, layers).</p>
+<p>Dùng thư viện <code>ggplot2</code> để vẽ bản đồ bằng cách kết hợp 4 dữ liệu đã được fortity ở trên. Crop bản đồ theo tọa độ <code>(103.9, 107.5)</code> và <code>(8.5, 11)</code>. Có thể sử dụng các hàm khác của <code>ggplot2</code> để thêm các nội dung khác (tên địa danh, ký hiệu, layers).</p>
 
 <pre class="prettyprint">
 # Load ggplot2 library

@@ -109,13 +109,33 @@
 .show {
   display: block;
 }
+
+
+/* Style the buttons */
+.btnFilter {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.btnFilter:hover {
+  background-color: #ddd;
+}
+
+.btnFilter.filteractive {
+  background-color: #666;
+  color: white;
+}
+
 </style>
 
 <div id="myBtnContainer">
-  <button class="btn active" onclick="filterSelection('all')"> All</button>
-  <button class="btn" onclick="filterSelection('hri-vietnam')"> HRI Tiếng Việt</button>
-  <button class="btn" onclick="filterSelection('pop-science')"> Khoa học phổ thông</button>
-  <button class="btn" onclick="filterSelection('tutorial')"> Tutorials</button>
+  <button class="btnFilter filteractive" onclick="filterSelection('all')"> All</button>
+  <button class="btnFilter" onclick="filterSelection('hri-vietnam')"> HRI Tiếng Việt</button>
+  <button class="btnFilter" onclick="filterSelection('pop-science')"> Khoa học phổ thông</button>
+  <button class="btnFilter" onclick="filterSelection('tutorial')"> Tutorials</button>
 </div>
 
 <br>
@@ -1268,12 +1288,12 @@ function w3RemoveClass(element, name) {
 
 // Add active class to the current button (highlight it)
 var btnContainer = document.getElementById("myBtnContainer");
-var btns = btnContainer.getElementsByClassName("btn");
+var btns = btnContainer.getElementsByClassName("btnFilter");
 for (var i = 0; i < btns.length; i++) {
   btns[i].addEventListener("click", function(){
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
+    var current = document.getElementsByClassName("filteractive");
+    current[0].className = current[0].className.replace(" filteractive", "");
+    this.className += " filteractive";
   });
 }
 </script>

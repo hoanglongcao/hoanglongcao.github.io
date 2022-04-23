@@ -4,8 +4,11 @@
 ### Simplified version by Brubotics
 
 In-video quizzing for human-robot interaction experiments.
-
 Update: Does not work with mobile devices.
+
+View demo: https://hoanglongcao.github.io/In-Video-Quizzing/S2C1.html
+
+View code: https://github.com/hoanglongcao/hoanglongcao.github.io/blob/master/In-Video-Quizzing/
 
 - S2C1.html: Load video and create surveyElements.
 - end.html: End page, thank you message

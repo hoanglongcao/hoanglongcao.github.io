@@ -5,6 +5,8 @@
 
 In-video quizzing for human-robot interaction experiments.
 
+Update: Does not work with mobile devices.
+
 - S2C1.html: Load video and create surveyElements.
 - end.html: End page, thank you message
 - js/index.js: Define questions, options, timing.

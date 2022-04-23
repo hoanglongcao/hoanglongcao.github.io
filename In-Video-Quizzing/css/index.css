@@ -431,3 +431,9 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {  
   width: 100%;
 }
+
+.video-js {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+}

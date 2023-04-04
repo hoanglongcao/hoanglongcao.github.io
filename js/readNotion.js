@@ -5,7 +5,7 @@ var url = scriptTag.getAttribute("data-url");
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function() {
   document.charset = "UTF-8";
-  document.getElementById("content").innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
+  //document.getElementById("content").innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
   
 
   if (this.readyState == 4 && this.status == 200) {

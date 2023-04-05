@@ -2,6 +2,12 @@
 var scriptTag = document.getElementById("scriptTag");
 var url = scriptTag.getAttribute("data-url");
 
+var link = document.createElement("link");
+link.rel = "stylesheet";
+link.type = "text/css";
+link.href = "https://unpkg.com/prismjs@1.22.0/themes/prism.css";
+document.getElementsByTagName("head")[0].appendChild(link);
+
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function() {
   document.charset = "UTF-8";
@@ -35,9 +41,21 @@ xhr.onreadystatechange = function() {
       articleContent += articles[i].innerHTML;
 
     }
-    document.getElementById("headline").innerHTML = "";
-    document.getElementById("content").innerHTML = articleContent;
+    document.getElementById("content").innerHTML = "";
+    document.getElementById("headline").innerHTML = articleContent;
   }
 };
 xhr.open("GET", url, true);
 xhr.send();
+
+
+
+xhr.onload = function() {
+  var scriptA = document.createElement("script");
+  scriptA.src = "https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js";
+  document.head.appendChild(scriptA);
+
+  var scriptB = document.createElement("script");
+  scriptB.src = "https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js";
+  document.head.appendChild(scriptB);
+};

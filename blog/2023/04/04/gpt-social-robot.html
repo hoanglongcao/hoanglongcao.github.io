@@ -287,9 +287,49 @@ import sys
 import time
 import almath
 
-def main(session):   """   Example showing how to use setAngles method.   """   # Get the services ALMotion, ALRobotPosture and ALRobotModel.   motion_service = session.service("ALMotion")   posture_service = session.service("ALRobotPosture")   robot_model = session.service("ALRobotModel")    # Wake up robot   motion_service.wakeUp()    # Send robot to Stand Init   posture_service.goToPosture("StandInit", 0.5)    # Set the fraction of max speed for the arm movement.   # 0.5 = half the max speed   fractionMaxSpeed = 0.5    # Raise both arms higher above the shoulder   names = ["LShoulderPitch", "RShoulderPitch"]   angles = [-80.0*almath.TO_RAD, -80.0*almath.TO_RAD]   motion_service.setAngles(names, angles, fractionMaxSpeed)    # Wait for the movement to finish   time.sleep(2.0)
+def main(session):
+    """
+    Example showing how to use setAngles method.
+    """
+    # Get the services ALMotion, ALRobotPosture and ALRobotModel.
+    motion_service = session.service("ALMotion")
+    posture_service = session.service("ALRobotPosture")
+    robot_model = session.service("ALRobotModel")
 
-if __name__ == "__main__":   parser = argparse.ArgumentParser()   parser.add_argument("--ip", type=str, default="127.0.0.1",             help="Robot IP address. On robot or Local Naoqi: use '127.0.0.1'.")   parser.add_argument("--port", type=int, default=37227,             help="Naoqi port number")    args = parser.parse_args()   session = qi.Session()   try:     session.connect("tcp://" + args.ip + ":" + str(args.port))   except RuntimeError:     print ("Can't connect to Naoqi at ip \"" + args.ip + "\" on port " + str(args.port) +".\n"        "Please check your script arguments. Run with -h option for help.")     sys.exit(1)   main(session)</code></pre>
+    # Wake up robot
+    motion_service.wakeUp()
+
+    # Send robot to Stand Init
+    posture_service.goToPosture("StandInit", 0.5)
+
+    # Set the fraction of max speed for the arm movement.
+    # 0.5 = half the max speed
+    fractionMaxSpeed = 0.5
+
+    # Raise both arms higher above the shoulder
+    names = ["LShoulderPitch", "RShoulderPitch"]
+    angles = [-80.0*almath.TO_RAD, -80.0*almath.TO_RAD]
+    motion_service.setAngles(names, angles, fractionMaxSpeed)
+
+    # Wait for the movement to finish
+    time.sleep(2.0)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--ip", type=str, default="127.0.0.1",
+                        help="Robot IP address. On robot or Local Naoqi: use '127.0.0.1'.")
+    parser.add_argument("--port", type=int, default=37227,
+                        help="Naoqi port number")
+
+    args = parser.parse_args()
+    session = qi.Session()
+    try:
+        session.connect("tcp://" + args.ip + ":" + str(args.port))
+    except RuntimeError:
+        print ("Can't connect to Naoqi at ip \"" + args.ip + "\" on port " + str(args.port) +".\n"
+               "Please check your script arguments. Run with -h option for help.")
+        sys.exit(1)
+    main(session)</code></pre>
 <p>I also requested more abstract motions such as sad and happy poses from ChatGPT. According to ChatGPT, sad and happy poses can be achieved by lowering or raising the head, shoulders, and elbows. Although the results were not ideal, I think that with more specific instructions, ChatGPT could generate more meaningful poses. Unfortunately, I do not have enough time to investigate further at the moment.</p>
 <h3>Combining speech and locomotion</h3>
 <blockquote><code>Write a python code of greeting an old person using animated speech and then guided them to a table at a position of (5,2) using moveTo. When arriving the table, ask them to sit down and rest.</code></blockquote>
@@ -327,17 +367,21 @@ motion.moveTo(x, y, theta)
 # Ask the person to sit down and rest
 tts.say("Here we are. Please take a seat and rest. Is there anything else I can help you with?")</code></pre>
 <h3>Pepper as a conversation agent with ChatGPT</h3>
-<p>I did not attempt to implement this approach myself, but in my opinion, the implementation process seems relatively straightforward. It would involve first obtaining the voice input and converting it to text using a speech-to-text engine. Next, the text could be fed into ChatGPT for generating a response of a suitable length (not too long). Finally, animated speech could be used to read the generated response out loud while incorporating suitable gestures to make the response more engaging.</p>
+<p>I have not attempted to implement this approach yet, but in my opinion, the implementation process seems relatively straightforward. It would involve first obtaining the voice input and converting it to text using a speech-to-text engine. Next, the text could be fed into ChatGPT for generating a response of a suitable length (not too long). Finally, ALAnimatedSpeech and ALMotion could be used to read the generated response out loud while incorporating suitable gestures and motion (including locomation) to make the response more engaging.
+
+</p>
 <h2>Conclusion</h2>
+
+<h2>Conclusion</h2>
+
 <p>Providing clear instructions and examples is crucial for achieving better results. While ChatGPT has vast knowledge on various topics, relying solely on its knowledge might not be sufficient to deliver the desired outcome. Therefore, providing instructions and examples can help to clarify and guide the process, making it easier for ChatGPT to understand the user's intentions and provide more accurate and relevant responses. Clear instructions can also help the user to communicate their needs more effectively and ensure that they receive the desired information or solution.</p>
 
 <p>ChatGPT surprised me with some of its responses, but it took a significant amount of time to provide guidance and refine the generated outputs to my desired level of quality. As a result, I believe it would be helpful to set up a Wizard-of-Oz setup. The only autonomous task that comes to mind for ChatGPT is being a conversational partner.</p>
 
 <p>I do not plan to use it for my work for now but in the future who knows what opportunities might arise.</p>
 
-<div class="callout" style="background-color: #E03E3E; ">
-<div class="callout-emoji">⚠️</div>
-<p>And yes, as you might suspect, some parts of the text may have been written or elaborated upon by ChatGPT based on my brief inputs.</p>
+<div class="callout" style="background-color: #f0a97a; ">
+<p> <span role="img" aria-label="⚠️" style="font-family: &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Noto Color Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; line-height: 1em; white-space: nowrap;">⚠️</span> And yes, as you might suspect, some parts of the text may have been written or elaborated upon by ChatGPT based on my brief inputs.</p>
 </div>
 
 <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>

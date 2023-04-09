@@ -5,31 +5,31 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Grammaire du Français</title>
-  <meta name="description" content="Tài liệu ngữ pháp tiếng Pháp cơ bản" />
+  <meta name="description" content="Grammaire du Français" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Grammaire du Français" />
   <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://hoanglongcao.github.io/FR4VN//images/cover.jpg" />
   
-  <meta property="og:description" content="Tài liệu ngữ pháp tiếng Pháp cơ bản" />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Grammaire du Français" />
   
-  <meta name="twitter:description" content="Tài liệu ngữ pháp tiếng Pháp cơ bản" />
   
+  <meta name="twitter:image" content="https://hoanglongcao.github.io/FR4VN//images/cover.jpg" />
 
 <meta name="author" content="Cao Hoàng Long" />
 
 
-<meta name="date" content="2023-01-19" />
+<meta name="date" content="2023-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/bot.png" type="image/x-icon" />
 
 <link rel="next" href="các-loại-từ.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -52,11 +52,52 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NCCCJEJCGR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NCCCJEJCGR');
+</script>
+
+<script>
+    $(document).ready(function () {
+        process_solutions();
+    });
+    function process_solutions() {
+        $("div.section[id^='solution']").each(function(i) {
+        var soln_wrapper_id = "cvxr_ex_" + i;
+        var solution_id = $(this).attr('id');
+        var button = $("<button onclick=\"toggle_solution('" + soln_wrapper_id + "')\">Show/Hide</button>");
+        var new_div = $("<div id='" + soln_wrapper_id + "' class='solution' style='display: none;'></div>");
+        var h = $(this).first();
+        var others = $(this).children().slice(1);
+        $(others).each(function() {
+            $(this).appendTo($(new_div));
+        });
+        $(button).insertAfter($(h));
+        $(new_div).insertAfter($(button));
+        })
+    }
+    function toggle_solution(el_id) {
+      $("#" + el_id).toggle();
+    }
+</script>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="XI9dFmPA"></script>
 
 
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/toc.css" type="text/css" />
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
 </head>
 
 <body>
@@ -69,10 +110,10 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Grammaire du Français</a></li>
+<li><a href="./">Ngữ pháp tiếng Pháp cơ bản</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Giới thiệu</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bonjour!</a>
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ghi-chú-các-nguồn-tài-liệu"><i class="fa fa-check"></i>Ghi chú các nguồn tài liệu</a></li>
 </ul></li>
@@ -107,8 +148,6 @@
 <li class="chapter" data-level="2.1.5" data-path="cấu-trúc-câu.html"><a href="cấu-trúc-câu.html#chỉ-cái-ở-gần-hoặc-ở-xa"><i class="fa fa-check"></i><b>2.1.5</b> Chỉ cái ở gần hoặc ở xa</a></li>
 </ul></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
 
       </nav>
@@ -126,15 +165,16 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
+
 <div id="header">
 <h1 class="title">Grammaire du Français</h1>
 <h2 class="subtitle"><em>Tài liệu tự học ngữ pháp tiếng Pháp của cá nhân</em></h2>
 <p class="author"><em>Cao Hoàng Long</em></p>
-<p class="date"><em>2023-01-19</em></p>
+<p class="date"><em>2023-04-09</em></p>
 </div>
-<div id="giới-thiệu" class="section level1 unnumbered hasAnchor">
-<h1>Giới thiệu<a href="index.html#giới-thiệu" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><strong>Tài liệu này chưa hoàn chỉnh và được cập nhật liên tục</strong>. (2023-01-19)</p>
+<div id="bonjour" class="section level1 unnumbered hasAnchor">
+<h1>Bonjour!<a href="index.html#bonjour" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Tài liệu này chưa hoàn chỉnh và được cập nhật liên tục. (2023-04-09)</strong></p>
 <p>Tài liệu này tóm tắt ngữ pháp tiếng Pháp cơ bản của cá nhân tôi.</p>
 <p>Tài liệu không phải giáo trình và có thể có nhiều lỗi. Cám ơn các bạn đã quan tâm. Merci!</p>
 <p><em>Cao Hoàng Long</em></p>
@@ -146,6 +186,8 @@
 
 </div>
 </div>
+<div class="fb-comments" data-href="https://hoanglongcao.github.io/" data-width="" data-numposts="100"></div>
+
             </section>
 
           </div>
@@ -177,11 +219,7 @@ gitbook.start({
 "whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
+"fontsettings": false,
 "edit": {
 "link": null,
 "text": null
@@ -194,14 +232,15 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Ngu-phap-tieng-Phap-co-ban.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
 },
 "toc": {
-"collapse": "subsection"
-}
+"collapse": "subsubsection"
+},
+"info": false
 });
 });
 </script>

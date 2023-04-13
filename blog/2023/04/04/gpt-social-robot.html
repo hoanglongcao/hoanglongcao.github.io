@@ -278,7 +278,27 @@ distance_x = 1.0
 motion_proxy.moveTo(distance_x, 0.0, 0.0)</code></pre>
 <p><strong>Prompt 3: Raise both arms higher</strong></p>
 <p>I told Pepper the <a href="http://doc.aldebaran.com/2-5/family/robots/bodyparts.html#nao-chains" target="_blank">names of the joints</a>, <a href="https://link.springer.com/article/10.1007/s12369-016-0387-2/tables/1" target="_blank">the D-H parameters</a>, and an <a href="http://doc.aldebaran.com/2-5/naoqi/motion/control-joint.html#control-joint" target="_blank">example code</a> for controlling the joints. Everything was copy-paste from tables online. </p>
-<blockquote><code>These are the names of the joints.Body is ...	Head + LArm + LLeg + RLeg + RArmThe chain ...	Head	LArm	LLeg	RLeg	RArminvolves thejoints ...HeadYaw	LShoulderPitch	LHipYawPitch1	RHipYawPitch1	RShoulderPitchHeadPitch	LShoulderRoll	LHipRoll	RHipRoll	RShoulderRollLElbowYaw	LHipPitch	RHipPitch	RElbowYawLElbowRoll	LKneePitch	RKneePitch	RElbowRollLWristYaw2	LAnklePitch	RAnklePitch	RWristYaw2LHand2	RAnkleRoll	LAnkleRoll	RHand2</code></blockquote>
+<blockquote><code>These are the names of the joints.
+
+Body is ...	Head + LArm + LLeg + RLeg + RArm
+
+The chain ...	Head	LArm	LLeg	RLeg	RArm
+
+involves the
+
+joints ...
+
+HeadYaw	LShoulderPitch	LHipYawPitch1	RHipYawPitch1	RShoulderPitch
+
+HeadPitch	LShoulderRoll	LHipRoll	RHipRoll	RShoulderRoll
+
+LElbowYaw	LHipPitch	RHipPitch	RElbowYaw
+
+LElbowRoll	LKneePitch	RKneePitch	RElbowRoll
+
+LWristYaw2	LAnklePitch	RAnklePitch	RWristYaw2
+
+LHand2	RAnkleRoll	LAnkleRoll	RHand2</code></blockquote>
 <blockquote><code>Write a Python code for Pepper to raise both arms above the shoulder.</code></blockquote>
 <p>After several messages to correct the moving direction of the joints, ChatGPT could successfully generate the code to do what I want.</p>
 <pre><code class="language-python">import qi
@@ -367,10 +387,136 @@ motion.moveTo(x, y, theta)
 # Ask the person to sit down and rest
 tts.say("Here we are. Please take a seat and rest. Is there anything else I can help you with?")</code></pre>
 <h3>Pepper as a conversation agent with ChatGPT</h3>
-<p>I have not attempted to implement this approach yet, but in my opinion, the implementation process seems relatively straightforward. It would involve first obtaining the voice input and converting it to text using a speech-to-text engine. Next, the text could be fed into ChatGPT for generating a response of a suitable length (not too long). Finally, ALAnimatedSpeech and ALMotion could be used to read the generated response out loud while incorporating suitable gestures and motion (including locomation) to make the response more engaging.
 
-</p>
-<h2>Conclusion</h2>
+<p>In my opinion, the implementation process seems relatively straightforward. It would involve first obtaining the voice input and converting it to text using <a href="https://openai.com/research/whisper">whisper speech-to-text engine</a>. Next, the text could be fed into ChatGPT for generating a response by using <a href="https://github.com/Ai-Austin/Bing-GPT-Voice-Assistant">Bing-GPT-Voice-Assistant</a> with a suitable length (not too long). Finally, ALAnimatedSpeech and ALMotion could be used to read the generated response out loud while incorporating suitable gestures and motion (including locomation) to make the response more engaging.</p>
+
+<p>Update: I have tested the approach recommended earlier, but found that it involved a complex setup process, including the installation of different libraries, which proved challenging for ChatGPT to implement. As a result, I took on the task of writing the code myself. While the approach worked, there were some issues with the response time that depended on OpenAI's server, making the conversation feel somewhat unnatural.</p>
+
+<p>Because naoqi is designed to work with Python 2, we need to create two separate files that communicate with each other using a text file. While there are cleaner ways to achieve this, the concept remains the same.</p>
+
+<p><strong>Python3: voicegpt.py</strong></p>
+
+<pre><code class="language-python">import openai
+import asyncio
+import re
+import whisper
+
+import os
+
+import speech_recognition as sr
+from EdgeGPT import Chatbot, ConversationStyle
+
+# Initialize the OpenAI API
+openai.api_key = "YOUR OPENAI API KEY"
+
+# Create a recognizer object and wake word variables
+recognizer = sr.Recognizer()
+GPT_WAKE_WORD = "hello"
+
+def get_wake_word(phrase):
+    if GPT_WAKE_WORD in phrase.lower():
+        return GPT_WAKE_WORD
+    else:
+        return None
+    
+def synthesize_speech(text):
+    # opening the file in write only mode
+    f = open("speech.txt", "w")
+    # f is the File Handler
+    f.write(text)
+
+async def main():
+    while True:
+
+        with sr.Microphone() as source:
+            recognizer.adjust_for_ambient_noise(source)
+            print(f"Waiting for wake words 'ok Pepper'...")
+            while True:
+                audio = recognizer.listen(source)
+                print(f"Listenning...")
+                try:
+                    with open("audio.wav", "wb") as f:
+                        f.write(audio.get_wav_data())
+                    # Use the preloaded tiny_model
+                    model = whisper.load_model("tiny")
+                    result = model.transcribe("audio.wav")
+                    phrase = result["text"]
+                    print(f"You said: {phrase}")
+
+                    wake_word = get_wake_word(phrase)
+                    if wake_word is not None:
+                        break
+                    else:
+                        print("Not a wake word. Try again.")
+                except Exception as e:
+                    print("Error transcribing audio: {0}".format(e))
+                    continue
+
+            print("Speak a prompt...")
+            synthesize_speech('What can I help you with?')
+            audio = recognizer.listen(source)
+
+            try:
+                with open("audio_prompt.wav", "wb") as f:
+                    f.write(audio.get_wav_data())
+                model = whisper.load_model("base")
+                result = model.transcribe("audio_prompt.wav")
+                user_input = result["text"]
+                print(f"You said: {user_input}")
+            except Exception as e:
+                print("Error transcribing audio: {0}".format(e))
+                continue
+
+            if wake_word == GPT_WAKE_WORD:
+                # Send prompt to GPT-3.5-turbo API
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content":
+                        "You are a helpful assistant."},
+                        {"role": "user", "content": user_input},
+                    ],
+                    temperature=0.5,
+                    max_tokens=150,
+                    top_p=1,
+                    frequency_penalty=0,
+                    presence_penalty=0,
+                    n=1,
+                    stop=["\nUser:"],
+                )
+
+                bot_response = response["choices"][0]["message"]["content"]
+                
+        print("Bot's response:", bot_response)
+        synthesize_speech(bot_response)
+        print(f"End")
+
+if __name__ == "__main__":
+    asyncio.run(main())</code></pre>
+
+<p><strong>Python2: tts.py</strong></p>
+
+<pre><code class="language-python">import sys
+import time
+from naoqi import ALProxy
+
+# Set up connection with Pepper
+ip = "127.0.0.1" # replace with Pepper's IP address
+port = [your port]
+tts = ALProxy("ALAnimatedSpeech", ip, port)
+#tts = ALProxy("ALTextToSpeech", ip, port)
+text_old = ""
+
+while True:
+  f = open('speech.txt','r')
+  text = f.read().replace('\n',' ')
+  f.close()
+  if text != "":
+    if text !=text_old:
+      tts.say(text)
+      print(text)
+      text_old=text
+  time.sleep(1)</code></pre>
 
 <h2>Conclusion</h2>
 

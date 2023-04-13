@@ -430,7 +430,7 @@ async def main():
 
         with sr.Microphone() as source:
             recognizer.adjust_for_ambient_noise(source)
-            print(f"Waiting for wake words 'ok Pepper'...")
+            print(f"Waiting for wake words 'hello'...")
             while True:
                 audio = recognizer.listen(source)
                 print(f"Listenning...")

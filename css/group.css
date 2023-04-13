@@ -1,7 +1,7 @@
 /* Space out content a bit */
-body { padding-top: 10px; word-wrap: break-word; }
+body { padding-top: 20px; word-wrap: break-word; }
 
-.header { border-bottom: 1px solid #EEE; padding-bottom: 10px; margin-bottom: 10px; text-align: center; }
+.header { border-bottom: 1px solid #EEE; padding-bottom: 10px; margin-bottom: 20px; text-align: center; }
 
 .footer { /* padding-top: 19px; */ color: #999; border-top: 1px solid #EEE; text-align: center; font-size: 0.8em; }
 
@@ -12,11 +12,11 @@ body { padding-top: 10px; word-wrap: break-word; }
 a > .fa { display: inline; }
 
 /* /\* Customize container *\/ */
-/* @media (min-width: 768px) { */
-/*     .container { */
-/*         max-width: 730px; */
-/*     } */
-/* } */
+@media (min-width: 768px) { 
+     .container { 
+         max-width: 730px; 
+     } 
+ } 
 /* Jumbotron */
 .jumbotron { text-align: justify; padding-top: 1.5em; padding-bottom: 0.5em; font-size: 100%; }
 
@@ -34,7 +34,7 @@ ul.news > li { margin-top: 1em; }
 
 .title img { max-width: 50%; }
 
-section { margin-bottom: 1em; }
+section { margin-bottom: 2em; }
 
 .profile { object-fit: cover; }
 

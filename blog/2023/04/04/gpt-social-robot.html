@@ -400,11 +400,8 @@ tts.say("Here we are. Please take a seat and rest. Is there anything else I can 
 import asyncio
 import re
 import whisper
-
 import os
-
 import speech_recognition as sr
-from EdgeGPT import Chatbot, ConversationStyle
 
 # Initialize the OpenAI API
 openai.api_key = "YOUR OPENAI API KEY"
@@ -473,7 +470,7 @@ async def main():
                     model="gpt-3.5-turbo",
                     messages=[
                         {"role": "system", "content":
-                        "You are a helpful assistant."},
+                        "Imagine you are Pepper, a humanoid robot. You are a fun interactive partner."},
                         {"role": "user", "content": user_input},
                     ],
                     temperature=0.5,

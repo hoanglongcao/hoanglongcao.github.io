@@ -106,11 +106,8 @@
 <div class="post">
 <p>The Pepper robot is designed to interact with humans in a social environment. However, programming the robot to perform various tasks such as recognizing emotions, following commands, and reacting appropriately can be a complex and time-consuming process. The emergence of ChatGPT suggests a new method for programming robots like Pepper to become easier. In this post, I attempt to use ChatGPT in programming the Pepper robot.</p>
 
-<figure class="figure">
-  <img src="/img/gpt-social-robot.png" class="figure-img img-fluid rounded" width="60%" />
-  </figure>
-
-<link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet" />
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/CnGP7Uxic80" frameborder="0" allowfullscreen=""></iframe></div>
 
 <h2>Programming social robots</h2>
 <p>Programming for social robots is a promising but challenging field. It requires knowledge of computer science, artificial intelligence, and psychology. In this field, Python and C++ are popular programming languages, with libraries and frameworks that facilitate the development of social robots. Specifically, programming Pepper requires using the NAOqi APIs. However, programming social robots is a difficult and time-consuming process.</p>
@@ -394,6 +391,9 @@ tts.say("Here we are. Please take a seat and rest. Is there anything else I can 
 
 <p>Because naoqi is designed to work with Python 2, we need to create two separate files that communicate with each other using a text file. While there are cleaner ways to achieve this, the concept remains the same.</p>
 
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/CnGP7Uxic80" frameborder="0" allowfullscreen=""></iframe></div>
+
 <p><strong>Python3: voicegpt.py</strong></p>
 
 <pre><code class="language-python">import openai
@@ -451,6 +451,10 @@ async def main():
 
             print("Speak a prompt...")
             synthesize_speech('What can I help you with?')
+            # Should be waiting until Pepper finishes talking to present the voice of Pepper going back to TTS
+            # Can be checked with naoqi but I didn't have the time
+            time.sleep(3)
+
             audio = recognizer.listen(source)
 
             try:
@@ -470,7 +474,7 @@ async def main():
                     model="gpt-3.5-turbo",
                     messages=[
                         {"role": "system", "content":
-                        "Imagine you are Pepper, a humanoid robot. You are a fun interactive partner."},
+                        "Imagine you are Pepper, a humanoid robot. You are a fun interactive partner. Give response in the role of Pepper."},
                         {"role": "user", "content": user_input},
                     ],
                     temperature=0.5,
@@ -486,6 +490,9 @@ async def main():
                 
         print("Bot's response:", bot_response)
         synthesize_speech(bot_response)
+        # Should be waiting until Pepper finishes talking to present the voice of Pepper going back to TTS
+        # Can be checked with naoqi but I didn't have the time
+        time.sleep(10)
         print(f"End")
 
 if __name__ == "__main__":
@@ -501,7 +508,6 @@ from naoqi import ALProxy
 ip = "127.0.0.1" # replace with Pepper's IP address
 port = [your port]
 tts = ALProxy("ALAnimatedSpeech", ip, port)
-#tts = ALProxy("ALTextToSpeech", ip, port)
 text_old = ""
 
 while True:
